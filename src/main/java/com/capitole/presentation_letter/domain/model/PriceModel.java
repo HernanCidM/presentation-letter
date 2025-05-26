@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 
 @Getter
 public class PriceModel {
-    private Long brandID;
-    private Long productId;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private Long priceList;
-    private Integer priority;
-    private BigDecimal price;
-    private String currency;
+    private final Long brandID;
+    private final Long productId;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
+    private final Long priceList;
+    private final Integer priority;
+    private final BigDecimal price;
+    private final String currency;
 
     public PriceModel(Long brandID, Long productId, LocalDateTime startDate, LocalDateTime endDate,
                       Long priceList, Integer priority, BigDecimal price, String currency) {
