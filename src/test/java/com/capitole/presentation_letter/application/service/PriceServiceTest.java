@@ -50,7 +50,7 @@ class PriceServiceTest {
 
 
         assertTrue(result.isPresent());
-        assertEquals(brandId, result.get().getBrandID());
+        assertEquals(brandId, result.get().getBrandId());
         assertEquals(productId, result.get().getProductId());
         assertEquals(BigDecimal.valueOf(35.5), result.get().getPrice());
     }

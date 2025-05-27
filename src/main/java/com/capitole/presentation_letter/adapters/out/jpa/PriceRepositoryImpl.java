@@ -41,7 +41,7 @@ public class PriceRepositoryImpl implements PriceRepository {
 
     private PriceEntity fromDomainModel(PriceModel model) {
         return PriceEntity.builder()
-                .brandId(model.getBrandID())
+                .brandId(model.getBrandId())
                 .productId(model.getProductId())
                 .startDate(model.getStartDate())
                 .endDate(model.getEndDate())

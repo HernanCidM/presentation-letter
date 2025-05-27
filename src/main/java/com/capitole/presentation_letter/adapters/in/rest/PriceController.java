@@ -36,7 +36,7 @@ public class PriceController {
 
     private PriceResponseDTO toDto(PriceModel model) {
         return PriceResponseDTO.builder()
-                .brandId(model.getBrandID())
+                .brandId(model.getBrandId())
                 .productId(model.getProductId())
                 .priceList(model.getPriceList())
                 .startDate(model.getStartDate())
