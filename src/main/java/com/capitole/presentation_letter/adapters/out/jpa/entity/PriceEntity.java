@@ -3,17 +3,17 @@ package com.capitole.presentation_letter.adapters.out.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "prices")
+@Builder
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PriceEntity {
@@ -45,16 +45,5 @@ public class PriceEntity {
     @Column(name = "curr", nullable = false)
     private String currency;
 
-    public PriceEntity(Long brandId, Long productId, LocalDateTime startDate, LocalDateTime endDate,
-                       Long priceList, Integer priority, BigDecimal price, String currency) {
-        this.brandId = brandId;
-        this.productId = productId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.priceList = priceList;
-        this.priority = priority;
-        this.price = price;
-        this.currency = currency;
-    }
 
 }

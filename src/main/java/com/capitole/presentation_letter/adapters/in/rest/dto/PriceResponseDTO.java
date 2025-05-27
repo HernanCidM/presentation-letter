@@ -1,11 +1,15 @@
 package com.capitole.presentation_letter.adapters.in.rest.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Data
+@Builder
+@Getter
+@AllArgsConstructor
 public class PriceResponseDTO {
     private Long productId;
     private Long brandId;

@@ -1,6 +1,7 @@
 package com.capitole.presentation_letter.adapters.in.rest;
 
 import com.capitole.presentation_letter.adapters.in.rest.dto.PriceResponseDTO;
+import com.capitole.presentation_letter.domain.exceptions.PriceNotFoundException;
 import com.capitole.presentation_letter.domain.model.PriceModel;
 import com.capitole.presentation_letter.domain.ports.in.PriceUseCase;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,21 +28,21 @@ public class PriceController {
             @RequestParam Long productId,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime applicationDate
     ) {
-        return priceUseCase.getApplicablePrice(brandId, productId, applicationDate)
-                .map(this::toDto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        PriceModel model = priceUseCase.getApplicablePrice(brandId, productId, applicationDate)
+                .orElseThrow(() -> new PriceNotFoundException(brandId ,productId, applicationDate));
+
+        return ResponseEntity.ok(toDto(model));
     }
 
     private PriceResponseDTO toDto(PriceModel model) {
-        PriceResponseDTO dto = new PriceResponseDTO();
-        dto.setBrandId(model.getBrandID());
-        dto.setProductId(model.getProductId());
-        dto.setPriceList(model.getPriceList());
-        dto.setStartDate(model.getStartDate());
-        dto.setEndDate(model.getEndDate());
-        dto.setPrice(model.getPrice());
-        dto.setCurrency(model.getCurrency());
-        return dto;
+        return PriceResponseDTO.builder()
+                .brandId(model.getBrandID())
+                .productId(model.getProductId())
+                .priceList(model.getPriceList())
+                .startDate(model.getStartDate())
+                .endDate(model.getEndDate())
+                .price(model.getPrice())
+                .currency(model.getCurrency())
+                .build();
     }
 }

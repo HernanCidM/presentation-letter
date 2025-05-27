@@ -40,16 +40,15 @@ public class PriceRepositoryImpl implements PriceRepository {
     }
 
     private PriceEntity fromDomainModel(PriceModel model) {
-        PriceEntity entity = new PriceEntity();
-        entity.setBrandId(model.getBrandID());
-        entity.setProductId(model.getProductId());
-        entity.setStartDate(model.getStartDate());
-        entity.setEndDate(model.getEndDate());
-        entity.setPriceList(model.getPriceList());
-        entity.setPriority(model.getPriority());
-        entity.setPrice(model.getPrice());
-        entity.setCurrency(model.getCurrency());
-        return entity;
+        return PriceEntity.builder()
+                .brandId(model.getBrandID())
+                .productId(model.getProductId())
+                .startDate(model.getStartDate())
+                .endDate(model.getEndDate())
+                .priceList(model.getPriceList())
+                .priority(model.getPriority())
+                .price(model.getPrice())
+                .currency(model.getCurrency())
+                .build();
     }
 }
-
